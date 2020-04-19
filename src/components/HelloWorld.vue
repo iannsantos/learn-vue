@@ -1,5 +1,12 @@
 <template>
   <v-container>
+    <v-row justify="space-between">
+      <CardInfo icon="mdi-file-outline"></CardInfo>
+      <CardInfo icon="mdi-alert-outline"></CardInfo>
+      <CardInfo icon="mdi-file"></CardInfo>
+      <CardInfo icon="mdi-file"></CardInfo>
+    </v-row>
+
     <v-card>
       <v-card-title>
         Fornecedores
@@ -31,6 +38,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import CardInfo from './CardInfo.vue';
 
 export default Vue.extend({
   name: 'HelloWorld',
@@ -40,6 +48,10 @@ export default Vue.extend({
       if (status === 'Ativo') return 'green';
       if (status === 'Inativo') return 'red';
     },
+  },
+
+  components: {
+    CardInfo,
   },
 
   data: () => ({
