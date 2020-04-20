@@ -1,10 +1,13 @@
 <template>
   <v-container>
-    <v-row justify="space-between">
-      <CardInfo icon="mdi-file-outline"></CardInfo>
-      <CardInfo icon="mdi-alert-outline"></CardInfo>
-      <CardInfo icon="mdi-file"></CardInfo>
-      <CardInfo icon="mdi-file"></CardInfo>
+    <v-row>
+      <CardInfo
+        v-for="card in cards"
+        :key="card.title"
+        :icon="card.icon"
+        :title="card.title"
+        :content="card.content"
+      ></CardInfo>
     </v-row>
 
     <v-card>
@@ -31,6 +34,9 @@
         <template v-slot:item.color="{ item }">
           <v-chip label x-large :color="getColor(item.status)"></v-chip>
         </template>
+        <template v-slot:item.status="{ item }">
+          <v-chip :color="getColor(item.status)">{{ item.status }}</v-chip>
+        </template>
       </v-data-table>
     </v-card>
   </v-container>
@@ -45,8 +51,8 @@ export default Vue.extend({
 
   methods: {
     getColor(status: string) {
-      if (status === 'Ativo') return 'green';
-      if (status === 'Inativo') return 'red';
+      if (status === 'Ativo') return '#91EAD1';
+      if (status === 'Inativo') return '#FF5041';
     },
   },
 
@@ -56,6 +62,28 @@ export default Vue.extend({
 
   data: () => ({
     search: '',
+    cards: [
+      {
+        title: 'Cadastrados',
+        content: '39',
+        icon: 'mdi-file-outline',
+      },
+      {
+        title: 'Inativos',
+        content: '2,696',
+        icon: 'mdi-alert-outline',
+      },
+      {
+        title: 'Dúvidas',
+        content: '12',
+        icon: 'mdi-comment-question-outline',
+      },
+      {
+        title: 'Taxa de resposta',
+        content: '78%',
+        icon: 'mdi-email-check-outline',
+      },
+    ],
     headers: [
       {
         value: 'color',
