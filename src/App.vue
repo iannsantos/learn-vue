@@ -26,20 +26,20 @@
       </v-toolbar>
     </v-card>
     <v-content>
-      <HelloWorld />
+      <Dashboard />
     </v-content>
   </v-app>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-import HelloWorld from './components/HelloWorld.vue';
+import Dashboard from './modules/views/Dashboard.vue';
 
 export default Vue.extend({
   name: 'App',
 
   components: {
-    HelloWorld,
+    Dashboard,
   },
 
   data: () => ({

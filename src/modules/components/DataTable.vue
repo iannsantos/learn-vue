@@ -1,89 +1,32 @@
 <template>
-  <v-container>
-    <v-row>
-      <CardInfo
-        v-for="card in cards"
-        :key="card.title"
-        :icon="card.icon"
-        :title="card.title"
-        :content="card.content"
-      ></CardInfo>
-    </v-row>
-
-    <v-card>
-      <v-card-title>
-        Fornecedores
-        <v-spacer></v-spacer>
-
-        <v-text-field
-          v-model="search"
-          append-icon="mdi-magnify"
-          label="Procurar"
-          single-line
-          hide-details
-        ></v-text-field>
-      </v-card-title>
-
-      <v-data-table
-        :search="search"
-        :headers="headers"
-        :items="suppliers"
-        :items-per-page="5"
-        class="elevation-1"
-      >
-        <template v-slot:item.color="{ item }">
-          <v-chip label x-large :color="getColor(item.status)"></v-chip>
-        </template>
-        <template v-slot:item.status="{ item }">
-          <v-chip :color="getColor(item.status)">{{ item.status }}</v-chip>
-        </template>
-      </v-data-table>
-    </v-card>
-  </v-container>
+  <v-data-table
+    :search="search"
+    :headers="headers"
+    :items="suppliers"
+    :items-per-page="5"
+    class="elevation-1"
+  >
+    <template v-slot:item.color="{ item }">
+      <v-chip label x-large :color="getColor(item.status)"></v-chip>
+    </template>
+    <template v-slot:item.status="{ item }">
+      <v-chip :color="getColor(item.status)">{{ item.status }}</v-chip>
+    </template>
+  </v-data-table>
 </template>
 
-<script lang="ts">
+<script>
 import Vue from 'vue';
-import CardInfo from './CardInfo.vue';
 
 export default Vue.extend({
-  name: 'HelloWorld',
-
   methods: {
-    getColor(status: string) {
+    getColor(status) {
       if (status === 'Ativo') return '#91EAD1';
       if (status === 'Inativo') return '#FF5041';
     },
   },
 
-  components: {
-    CardInfo,
-  },
-
   data: () => ({
-    search: '',
-    cards: [
-      {
-        title: 'Cadastrados',
-        content: '39',
-        icon: 'mdi-file-outline',
-      },
-      {
-        title: 'Inativos',
-        content: '2,696',
-        icon: 'mdi-alert-outline',
-      },
-      {
-        title: 'Dúvidas',
-        content: '12',
-        icon: 'mdi-comment-question-outline',
-      },
-      {
-        title: 'Taxa de resposta',
-        content: '78%',
-        icon: 'mdi-email-check-outline',
-      },
-    ],
     headers: [
       {
         value: 'color',
@@ -148,3 +91,5 @@ export default Vue.extend({
   }),
 });
 </script>
+
+<style></style>
